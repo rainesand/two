@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
             primaryKey: true,
             unique: true
         },
-        username: {
+        user_name: {
             type: DataTypes.STRING,
             unique: true,
             validate: {
@@ -22,6 +22,8 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: false
         }
     });
-
+    User.associate = function(models) {
+        User.hasMany(models.Login);
+    };
    return User;
 };
