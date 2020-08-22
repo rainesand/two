@@ -9,7 +9,7 @@ module.exports = function (sequelize, DataTypes) {
             unique: true,
             allowNull: false
         },
-        username: {
+        user_name: {
             type: DataTypes.STRING,
             unique: true
         },
@@ -33,6 +33,14 @@ module.exports = function (sequelize, DataTypes) {
             null
         );
     });
-    User.hasMany(Show ,{as: 'Show', foreignKey: 'userId'})
+    // User.hasMany(Show, {as: 'Show', foreignKey: 'userId'});
+    User.associate = function(models) {
+        User.hasMany(models.Show,{
+            foreignKey: {
+                as: "userID",
+                allowNull: false
+            }
+        });
+    };
     return User;
 };
