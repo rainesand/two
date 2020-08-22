@@ -12,7 +12,7 @@ module.exports = function (app) {
         if (req.user) {
             res.redirect("/userPage");
         }
-        res.sendFile(path.join(__dirname, "../public/register.html"));
+        res.sendFile(path.join(__dirname, "../public/login.html"));
     });
 
     // if user is logged in send them to their personal page, otherwise send them to login page
@@ -22,6 +22,14 @@ module.exports = function (app) {
             res.redirect("/userPage");
         }
         res.sendFile(path.join(__dirname, "../public/login.html"));
+    });
+
+    //send register page
+    app.get("/register", (req, res) => {
+        if(req.user) {
+            res.redirect("/userPage");
+        }
+        res.sendFile(path.join(__dirname, "../public/register.html"));
     });
 
     // Here we've add our isAuthenticated middleware to this route.
