@@ -1,6 +1,6 @@
 // importing bcrypt to hash the user password
 const bcrypt = require('bcryptjs');
-
+var Show = require("./show");
 // creating user model to have email, username, and password column
 module.exports = function (sequelize, DataTypes) {
     var User = sequelize.define("User", {
@@ -18,6 +18,8 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         }
     }, {});
+
+
     // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
     User.prototype.validPassword = function (password) {
         return bcrypt.compareSync(password, this.password);
@@ -31,6 +33,6 @@ module.exports = function (sequelize, DataTypes) {
             null
         );
     });
-
+    User.hasMany(Show ,{as: 'Show', foreignKey: 'userId'})
     return User;
 };
