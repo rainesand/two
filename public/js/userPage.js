@@ -13,7 +13,7 @@ $(document).ready(() => {
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": `https://unogsng.p.rapidapi.com/search?orderby=rating&limit=100&query=${searchTerm}`,
+            "url": `https://cors-anywhere.herokuapp.com/https://unogsng.p.rapidapi.com/search?orderby=rating&limit=100&query=${searchTerm}`,
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "unogsng.p.rapidapi.com",
