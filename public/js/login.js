@@ -18,8 +18,8 @@ $(function () {
 
         // If we have an email and password we run the loginUser function and clear the form
         loginUser(user);
-        emailInput.val("");
-        passwordInput.val("");
+        // emaiInput.val("");
+        // passwordInput.val("");
     }
     // login function to send ajax post with user info, then redirect user to their personal page
     function loginUser(user) {

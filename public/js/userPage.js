@@ -7,7 +7,8 @@ $(document).ready(() => {
     });
 
 
-    $("#submit").on("click", function () {
+    $("#submit").on("click", function (e) {
+        e.preventDefault();
         var searchTerm = $("#searchBar").val().trim();
         console.log(searchTerm);
         var settings = {
