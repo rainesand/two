@@ -45,11 +45,6 @@ button {
     margin-bottom: 20px;
 }
 
-<<<<<<< HEAD
-.card {
-    border: solid black 2px;
-    margin-bottom: 10px;
-=======
 /* making columns for results to be reponsive */
 #results {
     width: 1200px;
@@ -72,5 +67,4 @@ button {
 
 .card:hover {
     border: 3px solid white;
->>>>>>> d2770119ec1fc0548c85b996a995675115faa897
 }
