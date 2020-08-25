@@ -12,7 +12,14 @@ button {
     background-color: transparent;
     border: none;
 }
+.collapse.in {
+    display: block !important;
+}
 
+.navbar {
+    background-color: darkgray;
+    margin-bottom: 30px;
+}
 #noResults {
     margin-top: 40px;
     color: white;
