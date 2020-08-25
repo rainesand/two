@@ -1,3 +1,63 @@
+body {
+    background-color: black;
+    font-family: 'Roboto', sans-serif;
+}
+
+#showSearch {
+    color: white;
+    font-size: 20px;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+}
+
+#noResults {
+    margin-top: 40px;
+    color: white;
+}
+
+#welcome {
+    color: white;
+    margin-bottom: 2em;
+}
+
+.card-title {
+    font-family: 'Alata', sans-serif;
+    font-size:30px;
+    font-weight: bold;
+}
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .btn-primary {
     margin-bottom: 20px;
+}
+
+/* making columns for results to be reponsive */
+#results {
+    width: 1200px;
+    margin: 20px auto;
+    columns: 4;
+    column-gap: 40px;
+}
+
+/* styling the card for responsive design */
+#results .card {
+    width: 100%;
+    margin: 0 0 20px;
+    padding: 10px;
+    break-inside: avoid;
+}
+
+.card {
+    background-color: darkgray;
+}
+
+.card:hover {
+    border: 3px solid white;
 }

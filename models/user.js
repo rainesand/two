@@ -35,12 +35,11 @@ module.exports = function (sequelize, DataTypes) {
     });
     // User.hasMany(Show, {as: 'Show', foreignKey: 'userId'});
     User.associate = function(models) {
-        User.hasMany(models.Show,{
-            foreignKey: {
-                as: "userID",
-                allowNull: false
-            }
+        User.hasMany(models.Show, {
+            foreignKey: "UserId",
+            onDelete: "CASCADE"
         });
     };
+
     return User;
 };
