@@ -9,6 +9,28 @@ $(document).ready(() => {
 
     $("#submit").on("click", function (e) {
         e.preventDefault();
+
+        // TESTING TESTING TESTING -----------------------------------------------
+        // TESTING TESTING TESTING -----------------------------------------------
+        // TESTING TESTING TESTING -----------------------------------------------
+        var user = {
+            username: "test",
+            email: "test@gmail.com",
+            password: "asdfasdf"
+        }
+        $.get('/api/test', user).then((results) => {
+            console.log(results);
+            console.log("testing");
+        });
+
+
+        // TESTING TESTING TESTING -----------------------------------------------
+        // TESTING TESTING TESTING -----------------------------------------------
+        // TESTING TESTING TESTING -----------------------------------------------
+
+
+
+
         var searchTerm = $("#searchBar").val().trim();
         console.log(searchTerm);
         var settings = {
@@ -25,30 +47,48 @@ $(document).ready(() => {
         $.ajax(settings).done(function (response) {
             console.log(response);
             $("#results").empty();
+            if (response.COUNT === "0") {
+                noResults();
+            }
             var results = response.ITEMS;
             results.forEach(show => {
                 makeShowCard(show);
-            });
-            function makeShowCard(show) {
-                console.log("I'm making cards");
-
-            var card = `<div class="col-md-3">
-                <div class="card">
-                    <img class="card-img-top" src="${show.image}" alt="show image">
-                    <div class="card-body">
-                <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="checkBox">
-                <label class="form-check-label" for="exampleCheck1">${show.title}</label>
-                </div>
-                </div>
-                </div>
-                </div>`
-            console.log($("input[type='checkbox']").val());
-            $("#results").append(card);
-            }
+            })
         });
-
 
     });
 
 });
+
+function makeShowCard(show) {
+    console.log("I'm making cards");
+
+    var card =
+        `<button type="button" data-toggle="modal" data-target="#myModal">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="${show.image}" alt="show image">
+            <div class="card-body">
+                <h5 class="card-title">${show.title}</h5>
+                <hr>
+                <p class="card-text">${show.synopsis}</p>
+            </div>
+        </div>
+        </button>`
+
+    $("#results").append(card);
+}
+
+function noResults() {
+    // Display no results message if none found
+    var none =
+        `<div class="container" id="no">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>Sorry, no results were found. Try a different search term!</h1>
+                </div>
+            </div>
+        </div>`
+
+    $("#noResults").append(none);
+}
+

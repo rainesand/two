@@ -5,11 +5,20 @@
   <title>User Page</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-  <link href="../public/css/styles.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
 </head>
 
 <body>
+  <!-- Navigation Bar -->
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -19,29 +28,73 @@
       </div>
     </div>
   </nav>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Welcome <span class="member-name"></span></h2>
-      </div>
-    </div>
-    <form>
-      <div class="form-group">
-        <label for="un">Search for a show to add to your collection</label>
-        <input type="search" class="form-control" id="searchBar" aria-describedby="search" placeholder="Enter search">
-      </div>
 
-      <button type="submit" id="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </div>
-  <div class="container">
+  <!-- Welcome message -->
+  <div class="container center">
     <div class="row">
-      <div class="col-md-10">
-        <div id="results"></div>
+      <div class="col-md-12" id="welcome">
+        <h1>Add to your collection, <span class="member-name"></span></h1>
       </div>
     </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Search field -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form>
+          <div class="form-group" id="showSearch">
+            <label for="un">Search for a show or movie to add</label>
+            <input type="search" class="form-control" id="searchBar" aria-describedby="search"
+              placeholder="Enter search">
+          </div>
+
+          <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Modal Example</h2>
+    <!-- Button to Open the Modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+      Open modal
+    </button>
+  
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Modal Heading</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+            Modal body..
+          </div>
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="container">
+    <div id="results"></div>
+    <div class="center" id="noResults"></div>
+  </div>
+
+
   <script type="text/javascript" src="./js/userPage.js"></script>
 
 </body>

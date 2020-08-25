@@ -7,13 +7,13 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = function (app) {
 
     //if user is logged in send them to their personal page, otherwise send them to register page
-    app.get("/", (req, res) => {
-        // If the user already has an account send them to the members page
-        if (req.user) {
-            res.redirect("/userPage");
-        }
-        res.sendFile(path.join(__dirname, "../public/login.html"));
-    });
+    // app.get("/", (req, res) => {
+    //     // If the user already has an account send them to their feed
+    //     if (req.user) {
+    //         res.redirect("/userPage");
+    //     }
+    //     res.sendFile(path.join(__dirname, "../public/login.html"));
+    // });
 
     // if user is logged in send them to their personal page, otherwise send them to login page
     app.get("/login", (req, res) => {
