@@ -6,6 +6,11 @@ $(document).ready(() => {
         $(".member-name").text(data.username);
     });
 
+    $(".buttCard").on("click", function (e) {
+        e.preventDefault();
+        console.log($(this));
+        modalInfo();
+    })
 
     $("#submit").on("click", function (e) {
         e.preventDefault();
@@ -62,18 +67,72 @@ $(document).ready(() => {
 
 function makeShowCard(show) {
     console.log("I'm making cards");
+    var pic = ""
+    // Check to see if high quality image available
+    if (show.largeimage === "") {
+        pic = show.image;
+    } else {
+        pic = show.largeimage;
+    }
 
     var card =
-        `<button type="button" data-toggle="modal" data-target="#myModal">
+        `<div class="container>
+        <button type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" data-target="#${show.netflixid}Summary">
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="${show.image}" alt="show image">
+            <img class="card-img-top" src="${pic}" alt="${show.title} Image">
             <div class="card-body">
                 <h5 class="card-title">${show.title}</h5>
                 <hr>
-                <p class="card-text">${show.synopsis}</p>
+                <div class="collapse" id="${show.netflixid}Summary">
+                    <p class="card-text">${show.synopsis}</p>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#${show.netflixid}">Add</button>
+                </div>
             </div>
         </div>
-        </button>`
+        </button>
+        </div>
+        <!-- The Modal -->
+    <div class="modal" id="${show.netflixid}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">${show.title}</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="row">
+                <div class="col">
+                    <img class="card-img-top" src="${pic}" alt="${show.title} Image">
+                </div>
+                <div class="col">
+                    <div class="container">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown button
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>`
 
     $("#results").append(card);
 }
@@ -92,3 +151,8 @@ function noResults() {
     $("#noResults").append(none);
 }
 
+
+function modalInfo(show){
+    var info = `<p>I'm here</p>`
+    $(".modal-body").append(info);
+}
