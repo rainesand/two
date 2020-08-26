@@ -6,34 +6,8 @@ $(document).ready(() => {
         $(".member-name").text(data.username);
     });
 
-    $(".buttCard").on("click", function (e) {
-        e.preventDefault();
-        console.log($(this));
-        modalInfo();
-    })
-
     $("#submit").on("click", function (e) {
         e.preventDefault();
-
-        // TESTING TESTING TESTING -----------------------------------------------
-        // TESTING TESTING TESTING -----------------------------------------------
-        // TESTING TESTING TESTING -----------------------------------------------
-        var user = {
-            username: "test",
-            email: "test@gmail.com",
-            password: "asdfasdf"
-        }
-        $.get('/api/test', user).then((results) => {
-            console.log(results);
-            console.log("testing");
-        });
-
-
-        // TESTING TESTING TESTING -----------------------------------------------
-        // TESTING TESTING TESTING -----------------------------------------------
-        // TESTING TESTING TESTING -----------------------------------------------
-
-
 
 
         var searchTerm = $("#searchBar").val().trim();
@@ -108,33 +82,82 @@ function makeShowCard(show) {
                 <div class="col">
                     <img class="card-img-top" src="${pic}" alt="${show.title} Image">
                 </div>
+                <div class="row">
                 <div class="col">
                     <div class="container">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown button
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="form-group">
+                            <label for="${show.netflixid}watchSelect">Watch Status</label>
+                            <select id="${show.netflixid}watchSelect" class="form-control">
+                                <option>Completed</option>
+                                <option>Watching</option>
+                                <option>Plan to Watch</option>
+                            </select>
                         </div>
                     </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col">
+                    <div class="container">
+                        <div class="form-group">
+                            <label for="${show.netflixid}rateSelect">Rating</label>
+                            <select class="form-control" id="${show.netflixid}rateSelect">
+                                <option>10</option>
+                                <option>9</option>
+                                <option>8</option>
+                                <option>7</option>
+                                <option>6</option>
+                                <option>5</option>
+                                <option>4</option>
+                                <option>3</option>
+                                <option>2</option>
+                                <option>1</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
+                </div>
             </div>
-          </div>
-          
+            <button type="submit" id="${show.netflixid}add" class="btn btn-primary">add</button>
+
           <!-- Modal footer -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            
+
           </div>
           
         </div>
       </div>
     </div>`
-
     $("#results").append(card);
+
+    $(`#${show.netflixid}add`).on("click", function (e) {
+        e.preventDefault();
+
+        $.get("/api/user_data").then(data => {
+            var userId = data.id;
+            var status = "";
+            var rate = "";
+            status = $(`#${show.netflixid}watchSelect`).val().trim();
+            rate = $(`#${show.netflixid}rateSelect`).val().trim();
+            var showPost = {
+                title: show.title,
+                summmary: show.synopsis,
+                imdb: show.rating,
+                userRate: rate,
+                status: status,
+                img: pic,
+                type: show.type,
+                year: show.released,
+                UserId: userId
+            }
+            $.post("/api/shows", showPost, function (res) {
+                console.log("Show added to DB");
+            });
+        });
+
+    });
 }
 
 function noResults() {
@@ -152,7 +175,6 @@ function noResults() {
 }
 
 
-function modalInfo(show){
-    var info = `<p>I'm here</p>`
-    $(".modal-body").append(info);
+function showAdd() {
+
 }
