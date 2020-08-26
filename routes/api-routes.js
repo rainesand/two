@@ -1,3 +1,5 @@
+
+
 var db = require("../models");
 const passport = require("../config/passport");
 
@@ -16,31 +18,41 @@ module.exports = function (app) {
         });
     });
 
+    // Backend show post route, creates new showPost in DB
+    app.post("/api/shows", function (req, res) {
+        console.log(req.body);
+        db.Show.create(req.body).then(function (post) {
+            res.json(post);
+        });
+
+    });
+
     // Route for logging user out
     app.get("/logout", (req, res) => {
         req.logout();
         res.redirect("/");
-      });
-    
+    });
 
-  // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", (req, res) => {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    } else {
-      // Otherwise send back the user's username and id
-      res.json({
-        username: req.user.username,
-        id: req.user.id
-      });
-    }
-  });
 
-  app.get("/api/test", (req, res) => {
-      db.User.findAll({}).then(function(users) {
-          console.log(users);
-      })
+    // Route for getting some data about our user to be used client side
+    app.get("/api/user_data", (req, res) => {
+        if (!req.user) {
+            // The user is not logged in, send back an empty object
+            res.json({});
+        } else {
+            // Otherwise send back the user's username and id
+            res.json({
+                username: req.user.username,
+                id: req.user.id
+            });
+        }
+    });
 
-  })
+    app.get("/api/test", (req, res) => {
+        db.User.findAll({}).then(function (users) {
+            console.log(users);
+        })
+
+    })
 };
+

@@ -16,6 +16,10 @@ button {
     display: block !important;
 }
 
+
+.dropdown {
+    margin-top: 20px;
+}
 .navbar {
     background-color: darkgray;
     margin-bottom: 30px;
@@ -68,3 +72,7 @@ button {
 .card:hover {
     border: 3px solid white;
 }
+
+
+
+

@@ -2,27 +2,28 @@ var User = require("./user");
 module.exports = function (sequelize, DataTypes) {
     var Show = sequelize.define("Show", {
         title: {
-            type: DataTypes.STRING,
-            allowNull: false
+            type: DataTypes.STRING
         },
         summary: {
-            type: DataTypes.STRING,
-            allowNull: false
+            type: DataTypes.STRING
         },
-        rating: {
-            type: DataTypes.FLOAT,
-            allowNull: false
+        imdb: {
+            type: DataTypes.FLOAT
+        },
+        userRate: {
+            type: DataTypes.INTEGER
+        },
+        status: {
+            type: DataTypes.STRING
         },
         img: {
             type: DataTypes.STRING
         },
         type: {
-            type: DataTypes.STRING,
-            allowNull: false
+            type: DataTypes.STRING
         },
         year: {
-            type: DataTypes.INTEGER,
-            allowNull: false
+            type: DataTypes.INTEGER
         }
     }, {});
 
