@@ -1,0 +1,82 @@
+body {
+    background-color: black;
+    font-family: 'Roboto', sans-serif;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#welcome {
+    color: white;
+    margin-bottom: 2em;
+}
+
+.navbar {
+    background-color: darkgray;
+    margin-bottom: 30px;
+}
+
+.sideScroll {
+    /* background-color: rgba(51, 51, 51, 0.596); */
+    background-color: transparent;
+    overflow: auto;
+    white-space: nowrap;
+  }
+  
+.sideScroll a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+  }
+  
+.sideScroll a:hover {
+    background-color: #777;
+  }
+
+button  {
+    background-color: transparent;
+    border: transparent;
+}
+
+.cardButt:focus {
+    outline: none !important;
+  }
+
+.card-body {
+    white-space: normal !important;
+}
+
+.card:hover {
+    border: 3px solid white;
+}
+
+
+.card-deck {
+    position : relative;
+  }
+  
+.card-deck:after {
+    content  : "";
+    position : absolute;
+    left: 90%;
+    z-index  : 1;
+    pointer-events   : none;
+    background-image : linear-gradient(to right, 
+                      rgba(255,255,255, 0), 
+                      rgb(0, 0, 0) 90%);
+    width: 10%;
+    height: 100%;
+    
+  }
+
+  .statusBar {
+      margin: 20px;
+      color: white;
+      /* border-bottom: 1px solid gray;
+      border-top: 1px solid gray; */
+  }

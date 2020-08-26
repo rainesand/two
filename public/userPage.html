@@ -10,23 +10,36 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
+  <link href="css/upStyles.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
 </head>
 
 <body>
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-dark navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/logout">
-          Logout
-        </a>
+ <!-- Navigation Bar -->
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">ShowTrack</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="container">
+          <div class="row justify-content-end">
+              <div class="navbar-nav">
+                  <a class="nav-item nav-link active" href="/userPage">Collect<span
+                          class="sr-only">(current)</span></a>
+                  <a class="nav-item nav-link active" href="/">Feed</a>
+                  <a class="nav-item nav-link active" href="/library">Library</a>
+                  <a class="nav-item nav-link active" href="/logout">Logout</a>
+              </div>
+          </div>
       </div>
-    </div>
-  </nav>
+  </div>
+  </div>
+</nav>
 
   <!-- Welcome message -->
   <div class="container center">
@@ -58,7 +71,7 @@
 
 
 
-  
+
   <div class="container">
     <div id="results"></div>
     <div class="center" id="noResults"></div>
@@ -67,9 +80,13 @@
 
   <!-- Scripts for responsiveness -->
   <script type="text/javascript" src="./js/userPage.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
- 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+
 </body>
 
 </html>

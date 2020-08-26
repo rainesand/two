@@ -1,6 +1,6 @@
 $(document).ready(() => {
-    // This file just does a GET request to figure out which user is logged in
-    // and updates the HTML on the page showing ther username
+    // a GET request to figure out which user is logged in
+    //  updates the HTML on the page showing ther username
     $.get("/api/user_data").then(data => {
         console.log(data);
         $(".member-name").text(data.username);
@@ -8,7 +8,7 @@ $(document).ready(() => {
 
     $("#submit").on("click", function (e) {
         e.preventDefault();
-
+        console.log("Searching");
 
         var searchTerm = $("#searchBar").val().trim();
         console.log(searchTerm);
@@ -66,7 +66,7 @@ function makeShowCard(show) {
         </button>
         </div>
         <!-- The Modal -->
-    <div class="modal" id="${show.netflixid}">
+    <div class="modal fade" id="${show.netflixid}">
       <div class="modal-dialog">
         <div class="modal-content">
         
@@ -78,7 +78,7 @@ function makeShowCard(show) {
           
           <!-- Modal body -->
           <div class="modal-body">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col">
                     <img class="card-img-top" src="${pic}" alt="${show.title} Image">
                 </div>
@@ -118,13 +118,14 @@ function makeShowCard(show) {
                 </div>
                 </div>
             </div>
-            <button type="submit" id="${show.netflixid}add" class="btn btn-primary">add</button>
-
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             
 
+          <!-- Modal footer -->
+          <div class="modal-footer center">
+            
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <button type="button" id="${show.netflixid}add" class="btn btn-primary">Add</button>
+            
           </div>
           
         </div>
