@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
     <link href="css/libStyles.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2a34c30808.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
@@ -19,7 +20,8 @@
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">ShowTrack</a>
+        <a class="navbar-brand" href="/">
+            <i class="fas fa-chart-line"> </i>  ShowTrack</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -29,11 +31,20 @@
             <div class="container">
                 <div class="row justify-content-end">
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link active" href="/userPage">Collect<span
-                                class="sr-only">(current)</span></a>
-                        <a class="nav-item nav-link active" href="/">Feed</a>
-                        <a class="nav-item nav-link active" href="/library">Library</a>
-                        <a class="nav-item nav-link active" href="/logout">Logout</a>
+                        <a class="nav-item nav-link active" href="/userPage">
+                            <i class="far fa-plus-square">  </i>  Collect
+                        </a>
+                        <a class="nav-item nav-link active" href="/">
+                            <i class="fas fa-rss"></i>  Feed
+                        </a>
+                        <a class="nav-item nav-link active" href="/library">
+                            <i class="fas fa-book"></i>   
+                               Library
+                        </a>
+                        <a class="nav-item nav-link active" href="/logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </a>
                     </div>
                 </div>
             </div>
