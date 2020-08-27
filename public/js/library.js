@@ -20,7 +20,7 @@ $(document).ready(() => {
         var score = show.userRate;
         var card =
             `
-            <button class="cardButt" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" data-target="#${show.id}Summary">
+            <button id="${show.id}Div"class="cardButt" type="button" data-toggle="modal" aria-expanded="false" aria-controls="collapseExample" data-target="#${show.id}">
             <div class="card" style="width: 14rem;">
                 <img class="card-img-top" src="${show.img}" alt="${show.title} Image">
                 <div class="container-fluid score" id="${show.id}Score">
@@ -31,12 +31,6 @@ $(document).ready(() => {
                     <div class="row">
                     <div class="col">
                     <h5 class="card-title">${show.title}</h5>
-                    <hr>
-                    <div class="collapse" id="${show.id}Summary">
-                        <p class="card-text">${show.summary}</p>
-                        <p class="btn btn-info" data-toggle="modal" data-target="#${show.id}">Edit</p>
-                        <p class="btn btn-warning" href="/discuss">Discuss</p>
-                    </div>
                     </div>
                     </div>
                 </div>
@@ -62,11 +56,11 @@ $(document).ready(() => {
                     <img class="card-img-top" src="${show.img}" alt="${show.title} Image">
                 </div>
                 <div class="row">
-                <div class="col">
+                <div class="col-md-7">
                     <div class="container">
                         <div class="form-group">
-                            <label for="${show.netflixid}watchSelect">Watch Status</label>
-                            <select id="${show.netflixid}watchSelect" class="form-control">
+                            <label for="${show.id}watchSelect">Watch Status</label>
+                            <select id="${show.id}watchSelect" class="form-control">
                                 <option>Completed</option>
                                 <option>Watching</option>
                                 <option>Plan to Watch</option>
@@ -74,13 +68,11 @@ $(document).ready(() => {
                         </div>
                     </div>
                 </div>
-                </div>
-                <div class="row">
-                <div class="col">
+                <div class="col-md-5">
                     <div class="container">
                         <div class="form-group">
-                            <label for="${show.netflixid}rateSelect">Rating</label>
-                            <select class="form-control" id="${show.netflixid}rateSelect">
+                            <label for="${show.id}rateSelect">Rating</label>
+                            <select class="form-control" id="${show.id}rateSelect">
                                 <option>10</option>
                                 <option>9</option>
                                 <option>8</option>
@@ -95,6 +87,7 @@ $(document).ready(() => {
                         </div>
                     </div>
                 </div>
+
                 </div>
             </div>
             
@@ -102,9 +95,10 @@ $(document).ready(() => {
           <!-- Modal footer -->
           <div class="modal-footer center">
             
-                <button type="button" class="btn btn-danger" data-dismiss="modal" href="/delete">Delete</button>
-                <button type="button" id="${show.netflixid}add" class="btn btn-primary">Update</button>
-            
+                <button type="button" id="${show.id}delete" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                <button type="button" id="${show.id}update" class="btn btn-primary">Update</button>
+                <a id="discussButt" href="/discuss"><button type="button" id="${show.id}discuss" class="btn btn-warning">Discuss</button></a>
+
           </div>
           
         </div>
@@ -117,20 +111,84 @@ $(document).ready(() => {
 
         switch (status) {
             case "Watching":
-                $("#watchingMenu").append(card);
-                $("#completedMenu").append(card);
+                $("#watchingMenu").prepend(card);
+                $("#completedMenu").prepend(card);
 
             case "Completed":
-                $("#completedMenu").append(card);
-                $("#watchingMenu").append(card);
+                $("#completedMenu").prepend(card);
+                $("#watchingMenu").prepend(card);
 
             case "Plan to Watch":
-                $("#planMenu").append(card);
-                $("#completedMenu").append(card);
-                $("#watchingMenu").append(card);
+                $("#planMenu").prepend(card);
+                $("#completedMenu").prepend(card);
+                $("#watchingMenu").prepend(card);
         }
 
         scoreColor(score, show.id);
+
+        $("#discussButt").on("click", function(e) {
+            e.preventDefault();
+
+            $.get("/api/user_data").then(data => {
+                var userId = data.id;
+                var status = "";
+                var rate = "";
+                status = $(`#${show.id}watchSelect`).val().trim();
+                rate = $(`#${show.id}rateSelect`).val().trim();
+                var recentPost = {
+                    title: show.title,
+                    summary: show.summary,
+                    imdb: show.imdb,
+                    userRate: rate,
+                    status: status,
+                    img: show.img,
+                    type: show.type,
+                    year: show.year,
+                    netflixID: show.netflixID,
+                    UserId: userId
+                }
+                console.log(recentPost);
+                $.post("/api/recent", recentPost, function (res) {
+                    console.log("Show added to recent DB");
+                    location.replace("/discuss");
+                });
+            });
+    
+        });
+        $(`#${show.id}update`).on("click", function (e) {
+            e.preventDefault();
+
+            var status = "";
+            var rate = "";
+            status = $(`#${show.id}watchSelect`).val().trim();
+            rate = $(`#${show.id}rateSelect`).val().trim();
+            var showUpdate = {
+                userRate: rate,
+                status: status,
+                id: show.id
+            }
+            $.ajax({
+                method: "PUT",
+                url: "/api/update",
+                data: showUpdate
+            })
+                .then(function (res) {
+                    console.log(res)
+                    console.log("Show updated in DB");
+                    window.location.reload()
+                });
+
+        });
+
+
+        $(`#${show.id}delete`).on("click", function (e) {
+            e.preventDefault();
+            deleteShow(show.id);
+            $("#dangerAlert").fadeTo(2000, 500).slideUp(500, function(){
+                $("#dangerAlert").slideUp(500);
+            });
+        });
+        
     }
 
 });
@@ -171,3 +229,15 @@ function scoreColor(score, showId) {
 
     }
 }
+
+function deleteShow(id) {
+    $.ajax({
+        method: "DELETE",
+        url: "/api/show/" + id
+    })
+        .then(function () {
+            console.log("Show deleted")
+            $(`#${id}Div`).remove();
+        });
+}
+

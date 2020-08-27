@@ -3,6 +3,18 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+#discussButt:hover{
+    border: none;
+    background: transparent;
+}
+
+#dangerAlert, #primaryAlert{
+    position:absolute;
+    top: 50%;
+    width: 40%;
+    left: 30%;
+    z-index: 200;
+}
 .center {
     display: flex;
     align-items: center;
