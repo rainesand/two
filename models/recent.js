@@ -1,6 +1,5 @@
-
 module.exports = function (sequelize, DataTypes) {
-    var Show = sequelize.define("Show", {
+    var Recent = sequelize.define("Recent", {
         title: {
             type: DataTypes.STRING,
             allowNull: false
@@ -39,8 +38,8 @@ module.exports = function (sequelize, DataTypes) {
         }
     }, {});
 
-    Show.associate = function(models) {
-        Show.belongsTo(models.User);
+    Recent.associate = function(models) {
+        Recent.belongsTo(models.User);
     };
-    return Show;
+    return Recent;
 };

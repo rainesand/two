@@ -1,6 +1,5 @@
 // importing bcrypt to hash the user password
 const bcrypt = require('bcryptjs');
-var Show = require("./show");
 // creating user model to have email, username, and password column
 module.exports = function (sequelize, DataTypes) {
     var User = sequelize.define("User", {
@@ -36,6 +35,14 @@ module.exports = function (sequelize, DataTypes) {
 
     User.associate = function(models) {
         User.hasMany(models.Show, {
+            foreignKey: "UserId",
+            onDelete: "CASCADE"
+        });
+        User.hasMany(models.Post, {
+            foreignKey: "UserId",
+            onDelete: "CASCADE"
+        });
+        User.hasMany(models.Recent, {
             foreignKey: "UserId",
             onDelete: "CASCADE"
         });
