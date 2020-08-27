@@ -48,11 +48,22 @@ module.exports = function (app) {
         }
     });
 
-    app.get("/api/test", (req, res) => {
-        db.User.findAll({}).then(function (users) {
-            console.log(users);
-        })
-
-    })
+    // Route for getting users shows
+    app.get("/api/shows/:id", (req, res) => {
+        if (!req.user) {
+            // The user is not logged in, send back an empty object
+            res.json({});
+        } else {
+            // Otherwise send back the user's username and id
+            db.Show.findAll({
+                where: {
+                  UserId: req.params.id
+                }
+              }).then(function(dbShow) {
+                console.log(dbShow);
+                res.json(dbShow);
+              });
+        }
+    });
 };
 
