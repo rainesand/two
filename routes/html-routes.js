@@ -46,4 +46,8 @@ module.exports = function (app) {
         res.sendFile(path.join(__dirname, "../public/library.html"));
     });
 
+    app.get("/discuss", isAuthenticated, (req, res) => {
+        res.sendFile(path.join(__dirname, "../public/discuss.html"));
+    });
+
 }

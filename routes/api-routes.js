@@ -27,6 +27,44 @@ module.exports = function (app) {
 
     });
 
+    // user's recent show post route, creates new showPost in DB
+    app.post("/api/recent", function (req, res) {
+        console.log(req.body);
+        db.Recent.create(req.body).then(function (post) {
+            res.json(post);
+        });
+    });
+
+    app.post("/api/discussPost", function (req, res) {
+        console.log(req.body);
+        db.Post.create(req.body).then(function (post) {
+            res.json(post);
+        });
+    });
+
+    app.get("/api/post", function (req, res) {
+        db.Post.findAll({
+            order: [['createdAt', 'DESC']]
+        }).then(function (dbPost) {
+            res.json(dbPost);
+        });
+    })
+
+
+
+
+    app.get("/api/recent/:id", function (req, res) {
+        db.Recent.findAll({
+            limit: 1,
+            where: {
+                UserId: req.params.id,
+            },
+            order: [['createdAt', 'DESC']]
+        }).then(function (dbRecent) {
+            res.json(dbRecent);
+        });
+    })
+
     // Route for logging user out
     app.get("/logout", (req, res) => {
         req.logout();
@@ -57,13 +95,70 @@ module.exports = function (app) {
             // Otherwise send back the user's username and id
             db.Show.findAll({
                 where: {
-                  UserId: req.params.id
+                    UserId: req.params.id
                 }
-              }).then(function(dbShow) {
-                console.log(dbShow);
+            }).then(function (dbShow) {
+               
                 res.json(dbShow);
-              });
+            });
         }
     });
+
+    app.get("/api/users/:id", (req, res) => {
+        if (!req.user) {
+            // The user is not logged in, send back an empty object
+            res.json({});
+        } else {
+            // Otherwise send back the user's username and id
+            db.User.findAll({
+                where: {
+                    id: req.params.id
+                }
+            }).then(function (dbUser) {
+               
+                res.json(dbUser);
+            });
+        }
+    });
+
+    app.get("/api/feedShows", (req, res) => {
+        if (!req.user) {
+            // The user is not logged in, send back an empty object
+            res.json({});
+        } else {
+            // Otherwise send back the user's username and id
+            db.Show.findAll({
+            }).then(function (dbShow) {
+                
+                res.json(dbShow);
+            });
+        }
+    });
+
+    app.put("/api/update", function (req, res) {
+        db.Show.update({
+            userRate: req.body.userRate,
+            status: req.body.status
+        }, {
+            where: { id: req.body.id }
+        }).then(function (dbShow) {
+            
+            res.json(dbShow);
+        })
+
+    })
+
+    app.delete("/api/show/:id", function (req, res) {
+        db.Show.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(function (dbShow) {
+            res.json(dbShow);
+        });
+    });
+
+
+
 };
 

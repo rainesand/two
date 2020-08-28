@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Library</title>
+    <title>Discussion</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,7 +10,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
-    <link href="css/libStyles.css" rel="stylesheet">
+    <link href="css/discussStyles.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/2a34c30808.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -52,81 +52,53 @@
         </div>
     </nav>
 
-    <!-- Welcome message -->
+    <!-- Discussion Header -->
+    <div class="container-fluid center">
+        <div class="row" id="showSection">
+
+            <div class="row" id="welcome">
+                <div class="col-md-3">
+                    <img id="showImg"></img>
+                </div>
+                <div class="col-md-8" id="showInfo">
+                    <h1 id="showName"></h1>
+                    <h3 id="showSummary"></h3>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Search field -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h3 id="discussHead">Discussion</h3>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <span id="spoiler">Spoiler</span>
+                            <input type="checkbox" id="check" aria-label="Checkbox for spoiler">
+                        </div>
+                    </div>
+                    <input type="text" id="postBody" class="form-control" aria-label="Text input with checkbox">
+                </div>
+                <div class="row justify-content-end" id="postButtonRow">
+                    <button id="postSubmit" class="btn btn-primary">Post</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container center">
-        <div class="row">
-            <div class="col-md-12" id="welcome">
-                <h1><span class="member-name"></span>'s Library</h1>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
-
-    <div class="container-fluid statusBar">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <h1>Currently Watching</h1>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="container">
-        <div id="dangerAlert" class="alert alert-danger hide" style="display: none; text-align: center;">Show Deleted</div>
-        <div id="primaryAlert" class="alert alert-primary hide" style="display: none;">Show Updated</div>
-
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="card-deck">
-                    <div class="sideScroll" id="watchingMenu">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="container-fluid statusBar">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <h1>Completed</h1>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="card-deck">
-                    <div class="sideScroll" id="completedMenu">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-fluid statusBar">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <h1>Plan to Watch</h1>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="card-deck">
-                    <div class="sideScroll" id="planMenu">
-                    </div>
+        <div id="postDiv">
+            <div class="row justify-content-center" id="postRow">
+                <div class="col-md-1" id="userIcon"><i class="fas fa-user"></i></div>
+                <div class="col-md-6" id="postTest">
+                    <h6 id="postName">Saul Sallah</h6>
+                    <p id="postDate">Created At</p>
+                    <p id="postText" class="hider"> asdf asdf asf asdf asdf as asdf asdf asf asdf asdf as asdf asdf asf asdf asdf as asdf asdf asf asdf asdf as asdf asdf asf asdf asdf as asdf asdf asf asdf asdf as asdf asdf asf asdf asdf as asdf asdf asf asdf asdf as</p>
+                    <p class="spoilerWarning">This comment contains a spoiler. Click to view.</p>
                 </div>
             </div>
         </div>
@@ -134,9 +106,14 @@
 
 
 
+    <div class="container">
+        <div id="results"></div>
+        <div class="center" id="noResults"></div>
+    </div>
 
-    <!-- js  Scripts for responsiveness -->
-    <script type="text/javascript" src="./js/library.js"></script>
+
+    <!-- Scripts for responsiveness -->
+    <script type="text/javascript" src="./js/discuss.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>

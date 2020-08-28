@@ -144,13 +144,14 @@ function makeShowCard(show) {
             rate = $(`#${show.netflixid}rateSelect`).val().trim();
             var showPost = {
                 title: show.title,
-                summmary: show.synopsis,
+                summary: show.synopsis,
                 imdb: show.rating,
                 userRate: rate,
                 status: status,
                 img: pic,
                 type: show.type,
                 year: show.released,
+                netflixID: show.netflixid,
                 UserId: userId
             }
             $.post("/api/shows", showPost, function (res) {
