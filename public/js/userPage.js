@@ -124,7 +124,7 @@ function makeShowCard(show) {
           <div class="modal-footer center">
             
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <button type="button" id="${show.netflixid}add" class="btn btn-primary">Add</button>
+                <button type="button" id="${show.netflixid}add" class="btn btn-primary" data-dismiss="modal">Add</button>
             
           </div>
           

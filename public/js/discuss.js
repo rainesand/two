@@ -67,17 +67,6 @@ $(document).ready(() => {
             })
         })
     });
-
-
-
-
-
-
-
-
-
-
-
 });
 
 function makePost(post) {

@@ -12,10 +12,11 @@ $(document).ready(() => {
             shows.forEach(show => {
                 makeFeed(show); 
                 var userId = show.UserId;
-                console.log(userId);
                 console.log("================");
                 $.get("/api/users/" + userId).then(user => {
-                    console.log(user);
+                    // console.log(show);
+                    // console.log(user[0].username);
+                    addUser(show,user)
                     
                 });
               
@@ -25,13 +26,13 @@ $(document).ready(() => {
 
     function makeFeed(show) {
         
-        console.log("I'm making the feed");
+        console.log("----------------showMade");
         var score = show.userRate;
         var card =
             `<div class="card" style="width: 14rem;">
                 <img class="card-img-top" src="${show.img}" alt="${show.title} Image">
                 <div class="container-fluid score" id="${show.id}Score">
-                <span>Score: ${score}</span>
+                <span id="${show.id}User">'s Score: ${score}</span>
                 </div>
                 <div class="card-body">
                     <div class="container">
@@ -85,4 +86,11 @@ $(document).ready(() => {
                 }
             }
 });
+
+
+function addUser(show, user) {
+    console.log(show.id);
+    console.log(user[0].username);
+    $(`#${show.id}User`).prepend(user[0].username);
+}
     // function that updates feed actively via button or swipe or refresh

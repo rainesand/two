@@ -32,8 +32,8 @@ module.exports = function (app) {
         res.sendFile(path.join(__dirname, "../public/register.html"));
     });
 
-    // Here we've add our isAuthenticated middleware to this route.
-    // If a user who is not logged in tries to access this route they will be redirected to the register page
+    // Here we've add our isAuthenticated middleware to our routes.
+    // If a user who is not logged in tries to access these routes they will be redirected to the register/login page
     app.get("/userPage", isAuthenticated, (req, res) => {
         res.sendFile(path.join(__dirname, "../public/userPage.html"));
     });
