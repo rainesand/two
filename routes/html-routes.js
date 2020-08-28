@@ -38,6 +38,10 @@ module.exports = function (app) {
         res.sendFile(path.join(__dirname, "../public/userPage.html"));
     });
 
+    app.get("/feed", isAuthenticated, (req, res) => {
+        res.sendFile(path.join(__dirname, "../public/feed.html"));
+    });
+
     app.get("/library", isAuthenticated, (req, res) => {
         res.sendFile(path.join(__dirname, "../public/library.html"));
     });

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>User Page</title>
+  <title>Feed</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,7 +10,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
-  <link href="css/upStyles.css" rel="stylesheet">
+  <link href="css/libStyles.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/2a34c30808.js" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -51,53 +51,44 @@
   </div>
   </div>
 </nav>
-
-  <!-- Welcome message -->
-  <div class="container center">
-    <div class="row">
-      <div class="col-md-12" id="welcome">
-        <h1>Add to your collection, <span class="member-name"></span></h1>
-      </div>
+<button type="button" id="button" class="btn btn-primary">Refresh</button>
+  
+<!-- Welcome message -->
+    <div class="container center">
+        <div class="row">
+            <div class="col-md-12" id="welcome">
+                <h1><span class="member-name"></span>'s Feed</h1>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- Search field -->
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <form>
-          <div class="form-group" id="showSearch">
-            <label for="un">Search for a show or movie to add</label>
-            <input type="search" class="form-control" id="searchBar" aria-describedby="search"
-              placeholder="Enter search">
-          </div>
 
-          <button type="submit" id="submit" class="btn btn-primary">Search</button>
-        </form>
-      </div>
+    <div class="container center">
+        <div class="row">
+            <div class="col-md-12" id="welcome">
+                <h1 id="feedDiv"></h1>
+            </div>
+        </div>
     </div>
-  </div>
 
 
 
 
 
 
-  <div class="container">
-    <div id="results"></div>
-    <div class="center" id="noResults"></div>
-  </div>
 
 
+
+
+
+
+
+ 
   <!-- Scripts for responsiveness -->
-  <script type="text/javascript" src="./js/userPage.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-
+  <script type="text/javascript" src="./js/feed.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+ 
 </body>
 
 </html>
