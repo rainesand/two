@@ -63,10 +63,22 @@
                 <div class="col-md-8" id="showInfo">
                     <h1 id="showName"></h1>
                     <h3 id="showSummary"></h3>
+                    <div class="row justify-content-start">
+                        <div class="col-md-2">
+                            <h3><span class="badge badge-warning" id="ratingBadge"><i class="fas fa-star"></i></span></h3>
+                        </div>
+                        <div class="col-md-2">
+                            <h3><span class="badge badge-info" id="typeBadge"><i class="fas fa-video"></i></span></h3>
+                        </div>
+                        <div class="col-md-2">
+                            <h3><span class="badge badge-light" id="yearBadge"><i class="fas fa-calendar-alt"></i></span></h3>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
+
+    </div>
     </div>
 
     <!-- Search field -->
@@ -81,7 +93,8 @@
                             <input type="checkbox" id="check" aria-label="Checkbox for spoiler">
                         </div>
                     </div>
-                    <input type="text" id="postBody" class="form-control" aria-label="Text input with checkbox">
+                    <input type="text" id="postBody" placeholder="Write a comment..." class="form-control"
+                        aria-label="Text input with checkbox">
                 </div>
                 <div class="row justify-content-end" id="postButtonRow">
                     <button id="postSubmit" class="btn btn-primary">Post</button>
@@ -90,15 +103,12 @@
         </div>
     </div>
 
-    <div class="container center">
-        <div id="postDiv">
+    <div class="container center" id="board">
+        <div id="postDiv" class="hide">
             <div class="row justify-content-center" id="postRow">
-                <div class="col-md-1" id="userIcon"><i class="fas fa-user"></i></div>
-                <div class="col-md-6" id="postTest">
-                    <h6 id="postName">Saul Sallah</h6>
-                    <p id="postDate">Created At</p>
-                    <p id="postText" class="hider"> asdf asdf asf asdf asdf as asdf asdf asf asdf asdf as asdf asdf asf asdf asdf as asdf asdf asf asdf asdf as asdf asdf asf asdf asdf as asdf asdf asf asdf asdf as asdf asdf asf asdf asdf as asdf asdf asf asdf asdf as</p>
-                    <p class="spoilerWarning">This comment contains a spoiler. Click to view.</p>
+                <div class="col-md-6 noPost" id="postTest">
+                    <h2 id="postName">No posts yet. Get the conversation started!</h2>
+
                 </div>
             </div>
         </div>
