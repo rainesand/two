@@ -1,6 +1,6 @@
 # Show Tracker
 
-​![Product Logo](./images/logo.PNG)
+​![Product Logo](./images/logo.png)
 #### Created On: 08/18/2020  
 
 Link to the working product: "insert working heroku link"
