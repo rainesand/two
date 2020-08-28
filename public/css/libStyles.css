@@ -90,6 +90,7 @@ button  {
     
   }
 
+
   .score:after {
     content  : "";
     position : absolute;

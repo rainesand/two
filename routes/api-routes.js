@@ -42,8 +42,11 @@ module.exports = function (app) {
         });
     });
 
-    app.get("/api/post", function (req, res) {
+    app.get("/api/post/:netflixID", function (req, res) {
         db.Post.findAll({
+            where: {
+                netflixID: req.params.netflixID
+            },
             order: [['createdAt', 'DESC']]
         }).then(function (dbPost) {
             res.json(dbPost);
