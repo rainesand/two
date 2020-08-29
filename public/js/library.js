@@ -1,6 +1,5 @@
 $(document).ready(() => {
 
-
     $.get("/api/user_data").then(data => {
         console.log(data);
         $(".member-name").text(data.username);

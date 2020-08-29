@@ -39,7 +39,6 @@ $(document).ready(() => {
 
 
             $("#postSubmit").on("click", function (req, res) {
-                $("#postDiv").addClass("hide");
                 var check = $("#postBody").val();
                 if (check === "") {
                     alert("Post can't be empty");
