@@ -26,7 +26,6 @@ $(document).ready(() => {
 
     function makeFeed(show) {
         
-        console.log("----------------showMade");
         var score = show.userRate;
         var card =
             `<div class="card" style="width: 14rem;">

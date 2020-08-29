@@ -95,9 +95,9 @@ $(document).ready(() => {
           <!-- Modal footer -->
           <div class="modal-footer center">
             
-                <button type="button" id="${show.id}delete" class="btn btn-danger" data-dismiss="modal">Delete</button>
-                <button type="button" id="${show.id}update" class="btn btn-primary">Update</button>
-                <a id="discussButt" href="/discuss"><button type="button" id="${show.id}discuss" class="btn btn-warning">Discuss</button></a>
+                <button type="button" id="${show.id}delete" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-trash-alt"></i> Delete</button>
+                <button type="button" id="${show.id}update" class="btn btn-primary"><i class="fas fa-pen"></i> Update</button>
+                <a id="discussButt" href="/discuss"><button type="button" id="${show.id}discuss" class="btn btn-warning"><i class="fas fa-users"></i> Discuss</button></a>
 
           </div>
           

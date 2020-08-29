@@ -8,22 +8,19 @@ body {
     font-size: 20px;
 }
 
-button {
-    background-color: transparent;
-    border: none;
-}
-.collapse.in {
-    display: block !important;
+.modal {
+    color: black;
 }
 
+#newDiv {
+    margin-top: 30px;
+    color: white;
+}
 
 .dropdown {
     margin-top: 20px;
 }
-.navbar {
-    background-color: darkgray;
-    margin-bottom: 30px;
-}
+
 #noResults {
     margin-top: 40px;
     color: white;
@@ -34,15 +31,102 @@ button {
     margin-bottom: 2em;
 }
 
-.card-title {
-    font-family: 'Alata', sans-serif;
-    font-size:30px;
-    font-weight: bold;
-}
 .center {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.sideScroll {
+    background-color: transparent;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.sideScroll a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+.sideScroll a:hover {
+    background-color: #777;
+}
+
+.cardButt:focus {
+    outline: none !important;
+}
+
+.card-body {
+    white-space: normal !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    text-align: center;
+}
+
+#discussButt:hover {
+    border: none;
+    background: transparent;
+}
+
+.card:hover {
+    border: 3px solid white;
+}
+
+.card-deck, .score {
+    position: relative;
+}
+
+.score {
+    z-index: 2;
+    padding-bottom: 10px;
+}
+
+.card-deck:after {
+    content: "";
+    position: absolute;
+    left: 90%;
+    z-index: 10;
+    pointer-events: none;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgb(0, 0, 0) 90%);
+    width: 10%;
+    height: 100%;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+}
+#addedAlertNew, #addedAlert {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    left: 30%;
+    z-index: 200;
+}
+
+.collapse.in {
+    display: block !important;
+}
+
+.hide {
+    display: none;
+}
+.navbar {
+    background-color: darkgray;
+    margin-bottom: 30px;
+}
+
+.card-title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.card-body{
+    padding-top: 0px;
 }
 
 #submit {
@@ -50,14 +134,16 @@ button {
 }
 
 /* making columns for results to be reponsive */
+
 #results {
-    width: 1200px;
+    width: 1000px;
     margin: 20px auto;
-    columns: 4;
+    columns: 3;
     column-gap: 40px;
 }
 
 /* styling the card for responsive design */
+
 #results .card {
     width: 100%;
     margin: 0 0 20px;
@@ -68,11 +154,3 @@ button {
 .card {
     background-color: darkgray;
 }
-
-.card:hover {
-    border: 3px solid white;
-}
-
-
-
-

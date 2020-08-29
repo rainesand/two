@@ -97,6 +97,15 @@ function makePost(post) {
 }
 
 function makeTemp(post) {
+    var hideSpoiler = "";
+    var hideClick = "";
+    if (post.spoiler) {
+        hideSpoiler = "hideSpoiler";
+        hideClick = "";
+    } else {
+        hideSpoiler = "";
+        hideClick = "hideClick";
+    }
     var date = "Less than a minute ago";
     var newPost =
         `<div id="postDiv">
@@ -105,11 +114,13 @@ function makeTemp(post) {
         <div class="col-md-6" id="postTest">
             <h6 id="postName">${post.username}</h6>
             <p id="postDate">${date}</p>
-            <p id="postText" class="hider">${post.body}</p>
-            <p class="spoilerWarning">This comment contains a spoiler. Click to view.</p>
+            <p id="postText" class="${hideSpoiler}">${post.body}</p>
+            <p class="${hideClick} warn"><i class="far fa-flag"></i> This comment contains a spoiler. Click to view.</p>
         </div>
     </div>
 </div>`
-
     $("#board").prepend(newPost);
+    $(".warn").on("click", function (req, res) {
+        $(this).addClass("hideClick").siblings().removeClass("hideSpoiler")
+    });
 }
