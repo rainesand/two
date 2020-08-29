@@ -19,11 +19,6 @@ $(document).ready(() => {
 
     $.ajax(settings).done(function (response) {
         console.log(response);
-    });
-
-
-    $.ajax(settings).done(function (response) {
-        console.log(response);
         $("#results").empty();
         if (response.COUNT === "0") {
 

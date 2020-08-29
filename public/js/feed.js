@@ -2,11 +2,15 @@ $(document).ready(() => {
     $("#refresh").on("click", function (e) {
         e.preventDefault();
         location.reload();
-    })
+    });
+
+    $.get("/api/user_data").then(user => {
+        $(".member-name").prepend(user.username);
+    });
+    
     $.get("/api/feedShows").then(shows => {
         console.log(shows);
-        var name = shows[0].User.username;
-        $(".member-name").append(name);
+
         shows.forEach(show => {
             makeFeed(show);
             addUser(show);
