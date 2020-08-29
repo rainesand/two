@@ -18,39 +18,36 @@
 </head>
 
 <body>
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">
-      <i class="fas fa-chart-line"> </i>  ShowTrack</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="container">
-          <div class="row justify-content-end">
-              <div class="navbar-nav">
-                  <a class="nav-item nav-link active" href="/userPage">
-                      <i class="far fa-plus-square">  </i>  Collect
-                  </a>
-                  <a class="nav-item nav-link active" href="/feed">
-                      <i class="fas fa-rss"></i>  Feed
-                  </a>
-                  <a class="nav-item nav-link active" href="/library">
-                      <i class="fas fa-book"></i>   
-                         Library
-                  </a>
-                  <a class="nav-item nav-link active" href="/logout">
-                      <i class="fas fa-sign-out-alt"></i>
-                      Logout
-                  </a>
-              </div>
-          </div>
-      </div>
-  </div>
-  </div>
-</nav>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="/"><i class="fas fa-chart-line"> </i> ShowTrack</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/userPage"><i class="far fa-plus-square"> </i> Collect</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/feed"><i class="fas fa-rss"></i> Feed</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/library"><i class="fas fa-book"></i> Library</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
 
   <!-- Welcome message -->
   <div class="container center">
@@ -82,9 +79,24 @@
 
 
 
+  <div class="container" id="newDisplay">
+    <div id="addedAlert" class="alert alert-primary hide" style="display: none;">Show Added</div>
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="card-deck">
+          <div class="sideScroll" id="newMenu">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <div class="container">
-    <div id="results"></div>
+    <div id="results">
+      <div id="addedAlert" class="alert alert-primary hide" style="display: none;">Show Added
+      </div>
+    </div>
     <div class="center" id="noResults"></div>
   </div>
 
