@@ -1,15 +1,40 @@
 $(document).ready(() => {
+
+
     $.get("/api/user_data").then(data => {
         console.log(data);
         $(".member-name").text(data.username);
         var id = data.id;
 
         $.get("/api/shows/" + id).then(shows => {
+            var watchScore = 0;
+            var compScore = 0;
+            var planScore = 0;
             console.log(shows);
             shows.forEach(show => {
                 makeShowCard(show, data);
-            });
+                switch (show.status) {
+                    case "Watching":
+                        watchScore += 1;
+                        break;
+                    case "Completed":
+                        compScore += 1;
+                        break;
+                    case "Plan to Watch":
+                        planScore += 1;
+                        break;
+                }
 
+            });
+            if (watchScore === 0) {
+                $("#currBar").addClass("hide");
+            }
+            if (compScore === 0) {
+                $("#compBar").addClass("hide");
+            }
+            if (planScore === 0) {
+                $("#planBar").addClass("hide");
+            }
         })
     });
 
@@ -23,7 +48,7 @@ $(document).ready(() => {
             <button id="${show.id}Div"class="cardButt" type="button" data-toggle="modal" aria-expanded="false" aria-controls="collapseExample" data-target="#${show.id}">
             <div class="card" style="width: 14rem;">
                 <img class="card-img-top" src="${show.img}" alt="${show.title} Image">
-                <div class="container-fluid score" id="${show.id}Score">
+                <div class="container-fluid score" id="${show.id}Score"><em class="badge badge-warning" id="ratingBadge"><i class="fas fa-star"></i></em>
                 <span>${data.username}'s Score: ${score}</span>
                 </div>
                 <div class="card-body">
@@ -97,7 +122,7 @@ $(document).ready(() => {
             
                 <button type="button" id="${show.id}delete" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-trash-alt"></i> Delete</button>
                 <button type="button" id="${show.id}update" class="btn btn-primary"><i class="fas fa-pen"></i> Update</button>
-                <a id="discussButt" href="/discuss"><button type="button" id="${show.id}discuss" class="btn btn-warning"><i class="fas fa-users"></i> Discuss</button></a>
+                <span type="button" id="${show.id}discussButt" class="btn btn-warning"><i class="fas fa-users"></i> Discuss</span>
 
           </div>
           
@@ -105,29 +130,25 @@ $(document).ready(() => {
       </div>
     </div>`
 
-        // Remember to include break statement when done testing!!!!!!!
-        // Remember to include break statement when done testing!!!!!!!
-        // Remember to include break statement when done testing!!!!!!!
+
 
         switch (status) {
             case "Watching":
                 $("#watchingMenu").prepend(card);
-                $("#completedMenu").prepend(card);
-
+                break;
             case "Completed":
                 $("#completedMenu").prepend(card);
-                $("#watchingMenu").prepend(card);
-
-            case "Plan to Watch":
+                break;
+            default:
                 $("#planMenu").prepend(card);
-                $("#completedMenu").prepend(card);
-                $("#watchingMenu").prepend(card);
         }
+
 
         scoreColor(score, show.id);
 
-        $("#discussButt").on("click", function(e) {
+        $(`#${show.id}discussButt`).on("click", function (e) {
             e.preventDefault();
+            console.log("click click")
 
             $.get("/api/user_data").then(data => {
                 var userId = data.id;
@@ -149,12 +170,14 @@ $(document).ready(() => {
                 }
                 console.log(recentPost);
                 $.post("/api/recent", recentPost, function (res) {
+                    console.log(recentPost)
                     console.log("Show added to recent DB");
                     location.replace("/discuss");
                 });
             });
-    
+
         });
+
         $(`#${show.id}update`).on("click", function (e) {
             e.preventDefault();
 
@@ -184,11 +207,12 @@ $(document).ready(() => {
         $(`#${show.id}delete`).on("click", function (e) {
             e.preventDefault();
             deleteShow(show.id);
-            $("#dangerAlert").fadeTo(2000, 500).slideUp(500, function(){
+            $("#dangerAlert").fadeTo(2000, 500).slideUp(500, function () {
                 $("#dangerAlert").slideUp(500);
             });
         });
-        
+
+
     }
 
 });
@@ -223,9 +247,8 @@ function scoreColor(score, showId) {
         case 2:
             $(`#${showId}Score`).addClass("score2");
             break;
-        case 1:
+        default:
             $(`#${showId}Score`).addClass("score1");
-            break;
 
     }
 }

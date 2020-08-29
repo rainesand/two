@@ -1,0 +1,152 @@
+body {
+    background-color: black;
+    font-family: 'Roboto', sans-serif;
+}
+
+.card-title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+}
+
+.card-body {
+    padding-right: 5px;
+    margin-left: 5%;
+}
+
+.card-img {
+    transform: scale(0.8);
+    border-radius: 8px;
+    width: 284px;
+    height: 398px;
+}
+
+.card {
+    border: none;
+}
+
+.hide {
+    display: none;
+}
+
+#addedAlertRes {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    left: 30%;
+    z-index: 200;
+}
+
+​ .fadeMe, .fadeUp {
+    position: relative;
+    border: none;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.fadeMe:after {
+    content: "";
+    position: absolute;
+    top: 85%;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgb(0, 0, 0) 90%);
+    width: 100%;
+    height: 15%;
+}
+
+.fadeUp:after {
+    content: "";
+    position: absolute;
+    bottom: 85%;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: linear-gradient(to top, rgba(255, 255, 255, 0), rgb(0, 0, 0) 90%);
+    width: 100%;
+    height: 15%;
+}
+
+.score10 {
+    background: rgb(0, 255, 0);
+}
+
+.score9 {
+    background: rgb(0, 128, 0);
+}
+
+.score8 {
+    background: rgb(47, 128, 0);
+}
+
+.score7 {
+    background: rgb(68, 128, 0);
+}
+
+.score6 {
+    background: rgb(105, 128, 0);
+}
+
+.score5 {
+    background: rgb(128, 115, 0);
+}
+
+.score4 {
+    background: rgb(128, 98, 0);
+}
+
+.score3 {
+    background: rgb(128, 47, 0);
+}
+
+.score2 {
+    background: rgb(128, 26, 0);
+}
+
+.score1 {
+    background: rgb(128, 0, 0);
+}
+
+#welcome {
+    text-align: center;
+    color: white;
+}
+
+.score span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.card-text {
+    font-size: 20px;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.score span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.score:hover span {
+    padding-right: 15px;
+}
+
+.score:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.score {
+    z-index: 2;
+    padding-bottom: 10px;
+}

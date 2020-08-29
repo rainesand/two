@@ -64,11 +64,19 @@ button {
 .card-title {
     font-size: 1.75rem;
     font-family: 'Roboto', sans-serif;
+    margin-bottom: 5px;
+}
+
+.hide {
+    display: none;
 }
 
 .card-body {
     white-space: normal !important;
-    padding-top: 15px !important;
+    padding-top: 7px !important;
+    padding-right: 2px !important;
+    padding-left: 2px !important;
+    padding-bottom: 2px !important;
 }
 
 .card:hover {

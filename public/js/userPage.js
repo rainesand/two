@@ -16,11 +16,6 @@ $(document).ready(() => {
             "x-rapidapi-key": "a2bf636d02msh0285b0bad0d167cp1bad37jsn53ce1d57c625"
         }
     }
-    
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-    });
-    
 
     $.ajax(settings).done(function (response) {
         console.log(response);
@@ -90,7 +85,7 @@ function makeShowCard(show) {
                 <hr>
                 <div class="collapse" id="${show.netflixid}Summary">
                     <p class="card-text">${show.synopsis}</p>
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#${show.netflixid}">Add</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#${show.netflixid}"><i class="fas fa-plus-circle"> </i> Add</button>
                 </div>
             </div>
         </div>
@@ -154,21 +149,60 @@ function makeShowCard(show) {
           <!-- Modal footer -->
           <div class="modal-footer center">
             
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <button type="button" id="${show.netflixid}add" class="btn btn-primary" data-dismiss="modal">Add</button>
-                <a id="discussButt" href="/discuss"><button type="button" id="${show.netflixid}discuss" class="btn btn-warning"><i class="fas fa-users"></i> Discuss</button></a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="far fa-window-close"> </i> Cancel</button>
+                <button type="button" id="${show.netflixid}add" class="btn btn-primary" data-dismiss="modal"><i class="fas fa-plus-circle"> </i> Add</button>
+                <button type="button" id="${show.netflixid}discuss1" class="btn btn-warning"><i class="fas fa-users"></i> Discuss</button>
           </div>
           
         </div>
       </div>
     </div>`
+
     $("#results").append(card);
+
+    $(`#${show.netflixid}discuss1`).on("click", function (e) {
+        e.preventDefault();
+        console.log("hello");
+        $.get("/api/user_data").then(data => {
+            var userId = data.id;
+            var status = "";
+            var rate = "";
+            var pic = ""
+            // Check to see if high quality image available
+            if (show.largeimage === "") {
+                pic = show.image;
+            } else {
+                pic = show.largeimage;
+            }
+
+            // status = $(`#${show.netflixid}watchSelect`).val().trim();
+            // rate = $(`#${show.netflixid}rateSelect`).val().trim();
+            var recentPost1 = {
+                title: show.title,
+                summary: show.synopsis,
+                imdb: show.rating,
+                userRate: 0,
+                status: "status",
+                img: pic,
+                type: show.type,
+                year: show.released,
+                netflixID: show.netflixid,
+                UserId: userId
+            }
+            console.log(recentPost1);
+            $.post("/api/recent", recentPost1, function (res) {
+                console.log("Show added to recent DB");
+                location.replace("/discuss");
+            });
+        });
+
+    });
 
     $(`#${show.netflixid}add`).on("click", function (e) {
         e.preventDefault();
-        
-        $("#addedAlert").fadeTo(2000, 500).slideUp(500, function(){
-            $("#adddedAlert").slideUp(500);
+
+        $("#addedAlertRes").fadeTo(2000, 500).slideUp(500, function () {
+            $("#addedAlertRes").slideUp(500);
         });
 
         $.get("/api/user_data").then(data => {
@@ -208,7 +242,7 @@ function newShowCard(show) {
     }
 
     var card =
-            `
+        `
             <button id="${show.netflixid}Div"class="cardButt" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" data-target="#${show.netflixid}Summary">
             <div class="card" style="width: 14rem;">
                 <img class="card-img-top" src="${pic}" alt="${show.title} Image">
@@ -224,7 +258,7 @@ function newShowCard(show) {
                     <hr>
                     <div class="collapse" id="${show.netflixid}Summary">
                         <p class="card-text">${show.synopsis}</p>
-                        <span type="button" class="btn btn-success" data-toggle="modal" data-target="#${show.netflixid}">Add</span>
+                        <span type="button" class="btn btn-success" data-toggle="modal" data-target="#${show.netflixid}"> <i class="fas fa-plus"> </i> Add</span>
                     </div>
                     </div>
                     </div>
@@ -291,9 +325,9 @@ function newShowCard(show) {
           <!-- Modal footer -->
           <div class="modal-footer center">
             
-          <button type="button"  class="btn btn-danger" data-dismiss="modal">Cancel</button>
-          <button type="button" id="${show.netflixid}add" class="btn btn-primary" data-dismiss="modal">Add</button>
-            <a id="discussButt" href="/discuss"><span type="button" id="${show.netflixid}discuss" class="btn btn-warning"><i class="fas fa-users"></i> Discuss</span></a>
+          <button type="button"  class="btn btn-danger" data-dismiss="modal"><i class="far fa-window-close"> </i> Cancel</button>
+          <button type="button" id="${show.netflixid}add" class="btn btn-primary" data-dismiss="modal"><i class="fas fa-plus-circle"> </i> Add</button>
+            <a id="discussButt" href="/discuss"><span type="button" id="${show.netflixid}discuss1" class="btn btn-warning"><i class="fas fa-users"></i> Discuss</span></a>
 
           </div>
           
@@ -303,25 +337,33 @@ function newShowCard(show) {
 
     $("#newMenu").prepend(card);
 
-    $("#discussButt").on("click", function(e) {
+    $("#discussButt").on("click", function (e) {
         e.preventDefault();
 
         $.get("/api/user_data").then(data => {
             var userId = data.id;
             var status = "";
             var rate = "";
-            status = $(`#${show.id}watchSelect`).val().trim();
-            rate = $(`#${show.id}rateSelect`).val().trim();
+            var pic = ""
+            // Check to see if high quality image available
+            if (show.largeimage === "") {
+                pic = show.image;
+            } else {
+                pic = show.largeimage;
+            }
+
+            // status = $(`#${show.netflixid}watchSelect`).val().trim();
+            // rate = $(`#${show.netflixid}rateSelect`).val().trim();
             var recentPost = {
                 title: show.title,
-                summary: show.summary,
-                imdb: show.imdb,
-                userRate: rate,
-                status: status,
-                img: show.img,
+                summary: show.synopsis,
+                imdb: show.rating,
+                userRate: 0,
+                status: "status",
+                img: pic,
                 type: show.type,
-                year: show.year,
-                netflixID: show.netflixID,
+                year: show.released,
+                netflixID: show.netflixid,
                 UserId: userId
             }
             console.log(recentPost);
@@ -337,12 +379,18 @@ function newShowCard(show) {
     $(`#${show.netflixid}add`).on("click", function (e) {
         e.preventDefault();
 
-        $("#addedAlert").fadeTo(2000, 500).slideUp(500, function(){
-            $("#adddedAlert").slideUp(500);
+        $("#addedAlertRes").fadeTo(2000, 500).slideUp(500, function () {
+            $("#addedAlertRes").slideUp(500);
         });
 
         $.get("/api/user_data").then(data => {
             var userId = data.id;
+            var rating = "";
+            if (show.rating === "") {
+                var rating = "7";
+            } else {
+                rating = show.rating;
+            }
             var status = "";
             var rate = "";
             status = $(`#${show.netflixid}watchSelect`).val().trim();
@@ -350,7 +398,7 @@ function newShowCard(show) {
             var showPost = {
                 title: show.title,
                 summary: show.synopsis,
-                imdb: show.rating,
+                imdb: rating,
                 userRate: rate,
                 status: status,
                 img: pic,
@@ -360,6 +408,7 @@ function newShowCard(show) {
                 UserId: userId
             }
             $.post("/api/shows", showPost, function (res) {
+                console.log(showPost);
                 console.log("Show added to DB");
             });
         });
