@@ -101,7 +101,7 @@ module.exports = function (app) {
                     UserId: req.params.id
                 }
             }).then(function (dbShow) {
-               
+
                 res.json(dbShow);
             });
         }
@@ -118,7 +118,7 @@ module.exports = function (app) {
                     id: req.params.id
                 }
             }).then(function (dbUser) {
-               
+
                 res.json(dbUser);
             });
         }
@@ -129,10 +129,7 @@ module.exports = function (app) {
             // The user is not logged in, send back an empty object
             res.json({});
         } else {
-            // Otherwise send back the user's username and id
-            db.Show.findAll({
-            }).then(function (dbShow) {
-                
+            db.Show.findAll({ include: db.User }).then(function (dbShow) {
                 res.json(dbShow);
             });
         }
@@ -145,7 +142,7 @@ module.exports = function (app) {
         }, {
             where: { id: req.body.id }
         }).then(function (dbShow) {
-            
+
             res.json(dbShow);
         })
 

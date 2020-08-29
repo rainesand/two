@@ -1,5 +1,4 @@
 $(document).ready(() => {
-
     $.get("/api/user_data").then(user => {
         console.log(user);
 
@@ -7,12 +6,16 @@ $(document).ready(() => {
 
         $.get("/api/recent/" + id).then(recent => {
             var show = recent[0];
+            console.log(recent);
             console.log(show);
             let summary = show.summary.replace(/&#39;/g, "'");
+            let summary2 = summary.replace(/<br><b>/g, " ");
+            let summary3 = summary2.replace(/<\/b>/g, " ");
+
             console.log(summary)
             $("#showImg").attr("src", show.img);
             $("#showName").text(show.title);
-            $("#showSummary").text(summary);
+            $("#showSummary").text(summary3);
             $("#ratingBadge").append(" " + show.imdb);
             $("#typeBadge").append(" " + show.type);
             $("#yearBadge").append(" " + show.year);
@@ -36,11 +39,11 @@ $(document).ready(() => {
 
 
             $("#postSubmit").on("click", function (req, res) {
+                $("#postDiv").addClass("hide");
                 var check = $("#postBody").val();
                 if (check === "") {
                     alert("Post can't be empty");
                 } else {
-                    $("#postDiv").addClass("hide");
                     $.get("/api/user_data").then(user => {
                         var userId = user.id;
                         if ($('#check').is(":checked")) {
@@ -60,8 +63,8 @@ $(document).ready(() => {
                         }
                         $.post("/api/discussPost", discussPost, function (res) {
                             console.log("Post added to DB");
-                            makeTemp(discussPost);
                         });
+                        makeTemp(discussPost);
                     });
                 }
             })
@@ -99,14 +102,14 @@ function makePost(post) {
 function makeTemp(post) {
     var hideSpoiler = "";
     var hideClick = "";
-    if (post.spoiler) {
+    if (post.spoiler === "1") {
         hideSpoiler = "hideSpoiler";
         hideClick = "";
     } else {
         hideSpoiler = "";
         hideClick = "hideClick";
     }
-    var date = "Less than a minute ago";
+    var date = "Just now";
     var newPost =
         `<div id="postDiv">
     <div class="row justify-content-center" id="postRow">
