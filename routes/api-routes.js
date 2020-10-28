@@ -8,6 +8,7 @@ module.exports = function (app) {
     app.post("/api/login", passport.authenticate("local"), function (req, res) {
         res.json(req.body);
     });
+    
     // Backend register route, creates new user in DB
     app.post("/api/register", function (req, res) {
         console.log(req.body);

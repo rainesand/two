@@ -1,11 +1,9 @@
 {
     "development": {
-      "username": "root",
-      "password": "Sallah28",
-      "database": "showTrack",
+      "database": "Shack2",
       "host": "localhost",
-      "port": 3306,
-      "dialect": "mysql"
+      "port": 27017,
+      "dialect": "mongoose"
     },
     "test": {
       "username": "root",
@@ -16,7 +14,7 @@
       "dialect": "mysql"
     },
     "production": {
-      "use_env_variable": "JAWSDB_URL",
-      "dialect": "mysql"
+      "use_env_variable": "MONGODB_URL",
+      "dialect": "mongoose"
     }
   }
